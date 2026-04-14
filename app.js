@@ -165,7 +165,7 @@ window.AmCareApp = (() => {
         { to: '#/agendar', label: t('schedule') },
         { to: '#/chat', label: t('chat') },
         { to: '#/consulta', label: t('consultation') },
-        { to: '#/panel', label: 'Panel paciente' },
+        { to: '#/panel', label: t('patientPanel') },
         { to: '#/mi-historia', label: t('myHistory') }
       );
       base.push(
@@ -178,7 +178,7 @@ window.AmCareApp = (() => {
 
     if (user?.rol === 'medico') {
       base.push(
-        { to: '#/panel-medico', label: 'Panel médico' },
+        { to: '#/panel-medico', label: t('doctorPanel') },
         { to: '#/mis-pacientes', label: t('myPatients') },
         { to: '#/mi-agenda', label: t('myAgenda') },
         { to: '#/chat', label: t('chat') },
@@ -201,6 +201,148 @@ window.AmCareApp = (() => {
     }
 
     return base;
+  };
+
+  const STATIC_TEXT_MAP = {
+    en: {
+      'Urgencias 24/7': 'Urgent Care 24/7',
+      'Móvil': 'Mobile',
+      'Escritorio': 'Desktop',
+      'Especialidades médicas': 'Medical specialties',
+      'Atención primaria integral': 'Comprehensive primary care',
+      'Salud mental y seguimiento': 'Mental health and follow-up',
+      'Consulta infantil remota': 'Remote pediatric consultation',
+      'Control y prevención cardiovascular': 'Cardiovascular care and prevention',
+      'Casos de uso destacados': 'Featured use cases',
+      'Ver casos de uso completos': 'View full use cases',
+      'One platform for care delivery': 'One platform for care delivery',
+      'Usuarios cubiertos': 'Covered users',
+      'Sistemas de salud': 'Health systems',
+      'Visitas virtuales': 'Virtual visits',
+      'Iniciar videoconsulta': 'Start video consultation',
+      'Casos de referencia en salud digital': 'Digital health benchmark cases',
+      'Ingresa a tu entorno clínico': 'Access your clinical environment',
+      'Acceso rápido por rol (demo)': 'Quick role access (demo)',
+      'Paciente': 'Patient',
+      'Médico': 'Doctor',
+      'Contraseña': 'Password',
+      'Entrar': 'Sign in',
+      'Cerrar sesión': 'Log out',
+      'Dashboard del paciente': 'Patient dashboard',
+      'Panel médico': 'Doctor dashboard',
+      'Mis citas': 'My appointments',
+      'Mis recetas': 'My prescriptions',
+      'Mis documentos': 'My documents',
+      'Sin documentos': 'No documents',
+      'Sin recetas nuevas': 'No new prescriptions',
+      'Mi agenda (FullCalendar)': 'My schedule (FullCalendar)',
+      'Duración consulta (min)': 'Consultation length (min)',
+      'Días laborales': 'Work days',
+      'Horario de atención': 'Working hours',
+      'Haz clic en el calendario para crear bloques.': 'Click the calendar to create blocks.',
+      'Gestión de usuarios y roles': 'User and role management',
+      'Estadísticas globales': 'Global statistics',
+      'Gestión total de historias': 'Global medical records management',
+      'Requisitos mínimos': 'Minimum requirements',
+      'Preguntas frecuentes': 'Frequently asked questions',
+      'Consentimiento informado digital': 'Digital informed consent',
+      'Seguridad y cumplimiento': 'Security and compliance',
+      'Citas programadas': 'Scheduled appointments',
+      'Iniciar consulta': 'Start consultation',
+      'Cancelar': 'Cancel',
+      'Entrar': 'Join',
+      'Sin citas activas.': 'No active appointments.',
+      'Sin citas registradas': 'No appointments registered',
+      'No hay citas agendadas.': 'No scheduled appointments.',
+      'No hay citas de videollamada pendientes.': 'No pending video appointments.'
+    },
+    es: {
+      'Urgent Care 24/7': 'Urgencias 24/7',
+      'Mobile': 'Móvil',
+      'Desktop': 'Escritorio',
+      'Medical specialties': 'Especialidades médicas',
+      'Comprehensive primary care': 'Atención primaria integral',
+      'Mental health and follow-up': 'Salud mental y seguimiento',
+      'Remote pediatric consultation': 'Consulta infantil remota',
+      'Cardiovascular care and prevention': 'Control y prevención cardiovascular',
+      'Featured use cases': 'Casos de uso destacados',
+      'View full use cases': 'Ver casos de uso completos',
+      'Covered users': 'Usuarios cubiertos',
+      'Health systems': 'Sistemas de salud',
+      'Virtual visits': 'Visitas virtuales',
+      'Start video consultation': 'Iniciar videoconsulta',
+      'Digital health benchmark cases': 'Casos de referencia en salud digital',
+      'Access your clinical environment': 'Ingresa a tu entorno clínico',
+      'Quick role access (demo)': 'Acceso rápido por rol (demo)',
+      'Password': 'Contraseña',
+      'Sign in': 'Ingresar',
+      'Patient dashboard': 'Panel paciente',
+      'Doctor dashboard': 'Panel médico',
+      'My appointments': 'Mis citas',
+      'My prescriptions': 'Mis recetas',
+      'My documents': 'Mis documentos',
+      'No documents': 'Sin documentos',
+      'No new prescriptions': 'Sin recetas nuevas',
+      'My schedule (FullCalendar)': 'Mi agenda (FullCalendar)',
+      'Consultation length (min)': 'Duración consulta (min)',
+      'Work days': 'Días laborales',
+      'Working hours': 'Horario de atención',
+      'Click the calendar to create blocks.': 'Haz clic en el calendario para crear bloques.',
+      'User and role management': 'Gestión de usuarios y roles',
+      'Global statistics': 'Estadísticas globales',
+      'Global medical records management': 'Gestión total de historias',
+      'Minimum requirements': 'Requisitos mínimos',
+      'Frequently asked questions': 'Preguntas frecuentes',
+      'Digital informed consent': 'Consentimiento informado digital',
+      'Security and compliance': 'Seguridad y cumplimiento',
+      'Scheduled appointments': 'Citas programadas',
+      'Start consultation': 'Iniciar consulta',
+      'Join': 'Entrar',
+      'No active appointments.': 'Sin citas activas.',
+      'No appointments registered': 'Sin citas registradas',
+      'No scheduled appointments.': 'No hay citas agendadas.',
+      'No pending video appointments.': 'No hay citas de videollamada pendientes.'
+    }
+  };
+
+  const applyStaticTranslations = () => {
+    const lng = localStorage.getItem('amcare-lang') || 'es';
+    const map = STATIC_TEXT_MAP[lng];
+    if (!map) return;
+
+    const root = document.getElementById('root');
+    if (!root) return;
+
+    const entries = Object.entries(map).sort((a, b) => b[0].length - a[0].length);
+
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: (node) => {
+        if (!node?.nodeValue?.trim()) return NodeFilter.FILTER_REJECT;
+        const parentTag = node.parentElement?.tagName;
+        if (parentTag === 'SCRIPT' || parentTag === 'STYLE') return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach((node) => {
+      let value = node.nodeValue;
+      entries.forEach(([from, to]) => {
+        if (value.includes(from)) value = value.replaceAll(from, to);
+      });
+      node.nodeValue = value;
+    });
+
+    root.querySelectorAll('[placeholder]').forEach((el) => {
+      const current = el.getAttribute('placeholder') || '';
+      let translated = current;
+      entries.forEach(([from, to]) => {
+        if (translated.includes(from)) translated = translated.replaceAll(from, to);
+      });
+      if (translated !== current) el.setAttribute('placeholder', translated);
+    });
   };
 
   const renderShell = (route, user, content) => {
@@ -246,15 +388,15 @@ window.AmCareApp = (() => {
 
         <footer class="footer">
           <div class="footer-inner">
-            <p><strong>Funciona en cualquier dispositivo con internet</strong></p>
+            <p><strong>${t('footerWorks')}</strong></p>
             <div>
               <span class="footer-badge">HIPAA</span>
-              <span class="footer-badge">Cifrado SSL/TLS</span>
+              <span class="footer-badge">${t('footerSsl')}</span>
               <span class="footer-badge">ISO 27001</span>
-              <span class="footer-badge">Datos confidenciales</span>
+              <span class="footer-badge">${t('footerConfidential')}</span>
             </div>
             <div class="footer-grid">
-              <p class="notice"><strong>Aviso importante:</strong> Requiere conexión estable a internet · No reemplaza completamente la consulta presencial · Disponibilidad según plan y horario del médico.</p>
+              <p class="notice"><strong>${t('importantNotice')}</strong> Requiere conexión estable a internet · No reemplaza completamente la consulta presencial · Disponibilidad según plan y horario del médico.</p>
             </div>
           </div>
         </footer>
@@ -264,6 +406,7 @@ window.AmCareApp = (() => {
     $('#root').innerHTML = html;
     bindCommonEvents();
     if (window.lucide) window.lucide.createIcons();
+    applyStaticTranslations();
   };
 
   const cardVentaja = (icon, title, txt) => `
