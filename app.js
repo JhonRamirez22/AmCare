@@ -10,7 +10,7 @@ window.AmCareApp = (() => {
     { id: 2, nombre: 'Dr. Michael Torres', email: 'michael@amcare.co', password: 'medico123', rol: 'medico', especialidad: 'Telepsiquiatría', pacientesIds: [103, 104], activo: true },
     { id: 3, nombre: 'Juan Pérez', email: 'juan@amcare.co', password: 'paciente123', rol: 'paciente', historiaId: 101, activo: true },
     { id: 4, nombre: 'María González', email: 'maria@amcare.co', password: 'paciente123', rol: 'paciente', historiaId: 102, activo: true },
-    { id: 5, nombre: 'Admin AmCare', email: 'admin@amcare.co', password: 'admin123', rol: 'admin', activo: true }
+  { id: 5, nombre: 'Admin Mediwell', email: 'admin@amcare.co', password: 'admin123', rol: 'admin', activo: true }
   ];
 
   const HISTORIAS = [
@@ -223,7 +223,8 @@ window.AmCareApp = (() => {
       'Control y prevención cardiovascular': 'Cardiovascular care and prevention',
       'Casos de uso destacados': 'Featured use cases',
       'Ver casos de uso completos': 'View full use cases',
-      'One platform for care delivery': 'One platform for care delivery',
+  'One platform for care delivery': 'One platform for care delivery',
+  'One platform for care delivery · Mediwell': 'One platform for care delivery · Mediwell',
       'Usuarios cubiertos': 'Covered users',
       'Sistemas de salud': 'Health systems',
       'Visitas virtuales': 'Virtual visits',
@@ -309,7 +310,31 @@ window.AmCareApp = (() => {
       'No active appointments.': 'Sin citas activas.',
       'No appointments registered': 'Sin citas registradas',
       'No scheduled appointments.': 'No hay citas agendadas.',
-      'No pending video appointments.': 'No hay citas de videollamada pendientes.'
+      'No pending video appointments.': 'No hay citas de videollamada pendientes.',
+      'One platform for care delivery · Mediwell': 'Una plataforma para la atención médica · Mediwell'
+    },
+    he: {
+      'Inicio': 'בית',
+      'Buscar médicos': 'חיפוש רופאים',
+      'Agendar': 'קביעת תור',
+      'Consulta': 'ייעוץ',
+      'Panel paciente': 'לוח מטופל',
+      'Planes': 'תוכניות',
+      'Casos de uso': 'מקרי שימוש',
+      'Seguridad': 'אבטחה',
+      'Ayuda': 'עזרה',
+      'Urgencias 24/7': 'דחוף 24/7',
+      'Móvil': 'נייד',
+      'Escritorio': 'מחשב',
+      'One platform for care delivery · Mediwell': 'פלטפורמה אחת לשירותי בריאות · Mediwell',
+      'Usuarios cubiertos': 'משתמשים מכוסים',
+      'Sistemas de salud': 'מערכות בריאות',
+      'Visitas virtuales': 'ביקורים וירטואליים',
+      'Iniciar videoconsulta': 'התחלת ייעוץ וידאו',
+      'Especialidades médicas': 'התמחויות רפואיות',
+      'Casos de referencia en salud digital': 'מקרי ייחוס בבריאות דיגיטלית',
+      'Ingresa a tu entorno clínico': 'כניסה לסביבת העבודה הקלינית',
+      'Acceso rápido por rol (demo)': 'גישה מהירה לפי תפקיד (דמו)'
     }
   };
 
@@ -355,6 +380,8 @@ window.AmCareApp = (() => {
 
   const renderShell = (route, user, content) => {
     const lang = localStorage.getItem('amcare-lang') || 'es';
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
     const isGuestLogin = route === '/login' && !user;
     const roleBadge = user
       ? `<span class="badge ${window.AmCareRoles.roleBadgeClass(user.rol)}">${window.AmCareRoles.ROLE_LABEL[user.rol]}</span>`
@@ -377,6 +404,7 @@ window.AmCareApp = (() => {
               <div style="display:flex;gap:6px;">
                 <button class="lang-select" data-lang="es" style="border-color:${lang === 'es' ? 'var(--primary)' : 'var(--border)'}"><img src="https://flagcdn.com/24x18/co.png" alt="CO" /> ES</button>
                 <button class="lang-select" data-lang="en" style="border-color:${lang === 'en' ? 'var(--primary)' : 'var(--border)'}"><img src="https://flagcdn.com/24x18/us.png" alt="US" /> EN</button>
+                <button class="lang-select" data-lang="he" style="border-color:${lang === 'he' ? 'var(--primary)' : 'var(--border)'}"><img src="https://flagcdn.com/24x18/il.png" alt="IL" /> HE</button>
               </div>
               ${user ? '<button class="btn btn-outline" id="logoutBtn">' + t('logout') + '</button>' : ''}
             </div>
@@ -449,7 +477,7 @@ window.AmCareApp = (() => {
       </article>
     <article class="hero-media">
   ${mediaImg(MEDIA.heroTech, 'Tecnología digital en tablet', 'hero-image')}
-        <h3 style="margin-top:0">One platform for care delivery</h3>
+        <h3 style="margin-top:0">One platform for care delivery · Mediwell</h3>
         <p>Plataforma digital de salud con acceso continuo, cobertura amplia y operación clínica escalable.</p>
         <div class="metric-strip">
           <div><small>Usuarios cubiertos</small><strong>+90M</strong></div>
@@ -505,7 +533,7 @@ window.AmCareApp = (() => {
   const pageLogin = () => `
     <section class="login-wrap">
       <article class="login-brand-panel">
-        <p class="tag">AmCare Access</p>
+        <p class="tag">Mediwell Access</p>
         <h2>Ingresa a tu entorno clínico</h2>
         <p>Plataforma unificada para paciente, médico y administrador. Acceso seguro con enfoque en experiencia de telemedicina moderna.</p>
         <ul class="list">
@@ -651,7 +679,7 @@ window.AmCareApp = (() => {
     <section class="grid cols-2">
       <article class="card">
         <h2>Sala de videollamada (Jitsi)</h2>
-        <p>Se creará una sala única: <strong>AmCare-{especialista}-{timestamp}</strong></p>
+  <p>Se creará una sala única: <strong>Mediwell-{especialista}-{timestamp}</strong></p>
         <div class="form-group"><label>Especialista</label><input id="jitsiDoctor" value="${localStorage.getItem('amcare-next-doctor') || 'DraSarahJohnson'}" /></div>
         <button class="btn btn-primary" id="startVideoCall">Iniciar consulta</button>
         <button class="btn btn-outline" id="leaveCall">Salir</button>
@@ -804,7 +832,7 @@ window.AmCareApp = (() => {
   { titulo: 'Programas de telepsiquiatría y psicología', items: ['Cleveland Clinic', 'Medical Group Network'], flag: 'us', desc: 'Seguimiento continuo de salud mental.' },
       { titulo: 'Aseguradoras de salud', items: ['UnitedHealthcare', 'Anthem Inc.', 'Blue Cross Blue Shield'], flag: 'us', desc: 'Cobertura digital para afiliados.' },
       { titulo: 'Uso en Israel', items: ['Clalit Health Services', 'Maccabi Healthcare Services'], flag: 'il', desc: 'Modelos nacionales de telemedicina.' },
-      { titulo: 'Expansión Latinoamérica (AmCare)', items: ['Colombia', 'México', 'Argentina'], flag: 'co', desc: 'Adaptación regional para LATAM.' }
+      { titulo: 'Expansión regional (Mediwell)', items: ['Estados Unidos', 'Israel'], flag: 'us', desc: 'Implementación prioritaria para mercados objetivo.' }
     ];
 
     return `
@@ -835,7 +863,7 @@ window.AmCareApp = (() => {
     <section class="grid cols-2">
       <article class="card">
         <h2>Seguridad y cumplimiento</h2>
-        <p>AmCare adopta lineamientos de cumplimiento HIPAA y los adapta al contexto latinoamericano con referencia a la Ley 1581/2012 de Protección de Datos Personales en Colombia.</p>
+  <p>Mediwell adopta lineamientos de cumplimiento HIPAA y buenas prácticas internacionales para protección de datos de salud.</p>
         <ul class="list">
           <li>Cifrado SSL/TLS para datos en tránsito.</li>
           <li>Cifrado end-to-end en videollamadas embebidas.</li>
@@ -1132,7 +1160,7 @@ window.AmCareApp = (() => {
 
       localStorage.setItem('amcare-selected-medico-id', String(medicoSel.id));
 
-      const roomName = `AmCare-${medicoSel.nombre.replace(/\s+/g, '')}-${Date.now()}`;
+  const roomName = `Mediwell-${medicoSel.nombre.replace(/\s+/g, '')}-${Date.now()}`;
       const citas = getAppointments();
       const cita = {
         id: `a-${Date.now()}`,
@@ -1175,7 +1203,7 @@ window.AmCareApp = (() => {
   const bindConsulta = (user) => {
     const startCall = (roomOverride) => {
       const doctor = ($('#jitsiDoctor').value || 'Doctor').replace(/\s+/g, '');
-      const room = roomOverride || localStorage.getItem('amcare-next-room') || `AmCare-${doctor}-${Date.now()}`;
+  const room = roomOverride || localStorage.getItem('amcare-next-room') || `Mediwell-${doctor}-${Date.now()}`;
       const waitingArea = $('#waitingArea');
       const countdown = $('#countdown');
       const container = $('#jitsi-container');
@@ -1409,16 +1437,23 @@ window.AmCareApp = (() => {
   const renderLeaflet = () => {
     const mapDiv = document.getElementById('clinicMap');
     if (!mapDiv || !window.L) return;
-    const map = L.map('clinicMap').setView([4.711, -74.0721], 4);
+    const selectedLang = localStorage.getItem('amcare-lang') || 'es';
+    const isHebrew = selectedLang === 'he';
+    const defaultView = isHebrew
+      ? { center: [31.7683, 35.2137], zoom: 6 }
+      : { center: [39.8283, -98.5795], zoom: 4 };
+
+    const map = L.map('clinicMap').setView(defaultView.center, defaultView.zoom);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap'
     }).addTo(map);
 
     [
-      { name: 'Bogotá', lat: 4.711, lng: -74.0721 },
-      { name: 'Ciudad de México', lat: 19.4326, lng: -99.1332 },
-      { name: 'Buenos Aires', lat: -34.6037, lng: -58.3816 }
-    ].forEach((p) => L.marker([p.lat, p.lng]).addTo(map).bindPopup(`AmCare ${p.name}`));
+      { name: 'New York, US', lat: 40.7128, lng: -74.006 },
+      { name: 'Houston, US', lat: 29.7604, lng: -95.3698 },
+      { name: 'Tel Aviv, IL', lat: 32.0853, lng: 34.7818 },
+      { name: 'Jerusalem, IL', lat: 31.7683, lng: 35.2137 }
+    ].forEach((p) => L.marker([p.lat, p.lng]).addTo(map).bindPopup(`Mediwell ${p.name}`));
   };
 
   const bindRoutePage = (route, user, query) => {

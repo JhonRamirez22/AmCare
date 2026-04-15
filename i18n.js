@@ -2,7 +2,7 @@ window.AmCareI18n = (() => {
   const resources = {
     es: {
       translation: {
-        appName: 'AmCare',
+        appName: 'Mediwell',
         appSubtitle: 'Atención médica desde cualquier lugar',
         hipaa: 'HIPAA Compliant',
         login: 'Ingresar',
@@ -29,7 +29,7 @@ window.AmCareI18n = (() => {
         quickConsult: 'Consulta en 2 clics',
         startNow: 'Agendar ahora',
         seePlans: 'Ver planes',
-        whyAmcare: '¿Por qué AmCare?',
+  whyAmcare: '¿Por qué Mediwell?',
   footerWorks: 'Funciona en cualquier dispositivo con internet',
   footerSsl: 'Cifrado SSL/TLS',
   footerConfidential: 'Datos confidenciales',
@@ -41,7 +41,7 @@ window.AmCareI18n = (() => {
     },
     en: {
       translation: {
-        appName: 'AmCare',
+        appName: 'Mediwell',
         appSubtitle: 'Healthcare from anywhere',
         hipaa: 'HIPAA Compliant',
         login: 'Log in',
@@ -68,7 +68,7 @@ window.AmCareI18n = (() => {
         quickConsult: 'Consult in 2 clicks',
         startNow: 'Schedule now',
         seePlans: 'View plans',
-        whyAmcare: 'Why AmCare?',
+  whyAmcare: 'Why Mediwell?',
   footerWorks: 'Works on any internet-enabled device',
   footerSsl: 'SSL/TLS encryption',
   footerConfidential: 'Confidential data',
@@ -76,6 +76,45 @@ window.AmCareI18n = (() => {
         limitationsTitle: 'Important considerations',
         denied: 'Access denied',
         backPanel: 'Back to dashboard'
+      }
+    },
+    he: {
+      translation: {
+        appName: 'Mediwell',
+        appSubtitle: 'שירותי בריאות מכל מקום',
+        hipaa: 'תואם HIPAA',
+        login: 'התחברות',
+        logout: 'התנתקות',
+        home: 'בית',
+        findDoctors: 'חיפוש רופאים',
+        plans: 'תוכניות',
+        useCases: 'מקרי שימוש',
+        security: 'אבטחה',
+        help: 'עזרה',
+        chat: 'צ׳אט',
+        schedule: 'קביעת תור',
+        consultation: 'ייעוץ',
+        emergency: 'דחוף',
+        myHistory: 'התיק שלי',
+        myAgenda: 'הלו״ז שלי',
+        myPatients: 'המטופלים שלי',
+        panel: 'לוח בקרה',
+        patientPanel: 'לוח מטופל',
+        doctorPanel: 'לוח רופא',
+        admin: 'מנהל',
+        heroTitle: 'בריאות דיגיטלית אמינה עבור ארה״ב וישראל',
+        heroText: 'קבעו תור, בצעו שיחת וידאו, שוחחו עם רופא ונהלו תיק רפואי בפלטפורמה אחת.',
+        quickConsult: 'ייעוץ ב-2 קליקים',
+        startNow: 'קבעו עכשיו',
+        seePlans: 'צפו בתוכניות',
+        whyAmcare: 'למה Mediwell?',
+        footerWorks: 'עובד על כל מכשיר עם אינטרנט',
+        footerSsl: 'הצפנת SSL/TLS',
+        footerConfidential: 'מידע חסוי',
+        importantNotice: 'הודעה חשובה:',
+        limitationsTitle: 'נקודות חשובות',
+        denied: 'הגישה נדחתה',
+        backPanel: 'חזרה ללוח הבקרה'
       }
     }
   };
