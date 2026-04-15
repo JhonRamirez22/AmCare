@@ -92,11 +92,11 @@ window.AmCareApp = (() => {
   ];
 
   const MEDIA = {
-    heroTech: './assets/amcare-hero-tech.jpg',
-    videoConsult: './assets/amcare-video-consult.jpg',
-    doctorTablet: './assets/amcare-doctor-tablet.jpg',
-    connectedCare: './assets/amcare-connected-care.jpg',
-    patientTablet: './assets/amcare-patient-tablet.png'
+    heroTech: './assets/image1.png',
+    videoConsult: './assets/image2.png',
+    doctorTablet: './assets/image3.jpeg',
+    connectedCare: './assets/image4.png',
+    patientTablet: './assets/image5.png'
   };
 
   const $ = (s) => document.querySelector(s);
@@ -505,7 +505,6 @@ window.AmCareApp = (() => {
   const pageLogin = () => `
     <section class="login-wrap">
       <article class="login-brand-panel">
-        ${mediaImg(MEDIA.videoConsult, 'Videollamada médica remota', 'login-brand-image')}
         <p class="tag">AmCare Access</p>
         <h2>Ingresa a tu entorno clínico</h2>
         <p>Plataforma unificada para paciente, médico y administrador. Acceso seguro con enfoque en experiencia de telemedicina moderna.</p>
@@ -517,9 +516,6 @@ window.AmCareApp = (() => {
       </article>
 
       <article class="login-form-panel card">
-        <div class="login-circle-wrap">
-          ${mediaImg(MEDIA.patientTablet, 'Paciente usando tablet', 'login-circle-image')}
-        </div>
         <h2>${t('login')}</h2>
         <form id="loginForm">
           <div class="form-group"><label>Email</label><input type="email" id="loginEmail" required placeholder="usuario@amcare.co" /></div>

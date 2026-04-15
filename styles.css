@@ -435,12 +435,6 @@ th { background: #eef9f1; }
   padding: 20px;
 }
 
-.login-brand-image {
-  margin-bottom: 14px;
-  aspect-ratio: 16 / 9;
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
 .login-brand-panel .list li {
   background: rgba(255,255,255,.12);
   border-color: rgba(255,255,255,.22);
@@ -476,7 +470,6 @@ th { background: #eef9f1; }
   height: 180px;
   border-radius: 999px;
   border-color: #b6dfc5;
-  overflow: hidden;
 }
 
 @media (min-width: 768px) {
