@@ -821,7 +821,7 @@ window.AmCareApp = (() => {
           </tbody>
         </table>
       </div>
-      ${user?.rol === 'paciente' ? '' : '<canvas id="plansChart" height="120"></canvas>'}
+      
       <p style="margin-top:10px"><span class="tag">🇺🇸 EE.UU</span><span class="tag">🇮🇱 Israel</span><span class="tag">🇨🇴 Colombia</span></p>
     </section>
   `;
@@ -1419,19 +1419,7 @@ window.AmCareApp = (() => {
       });
     }
 
-    const plansCtx = document.getElementById('plansChart');
-    if (user?.rol !== 'paciente' && plansCtx && window.Chart) {
-      new Chart(plansCtx, {
-        type: 'radar',
-        data: {
-          labels: ['Chat', 'Video', 'Recetas', 'Analítica', 'Integración'],
-          datasets: [
-            { label: 'Personal', data: [5, 5, 5, 4, 2], borderColor: '#166534' },
-            { label: 'Hospital', data: [5, 5, 5, 5, 5], borderColor: '#ea580c' }
-          ]
-        }
-      });
-    }
+
   };
 
   const renderLeaflet = () => {
