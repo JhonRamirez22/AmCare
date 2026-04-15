@@ -91,6 +91,14 @@ window.AmCareApp = (() => {
     }
   ];
 
+  const MEDIA = {
+    heroTech: './assets/amcare-hero-tech.jpg',
+    videoConsult: './assets/amcare-video-consult.jpg',
+    doctorTablet: './assets/amcare-doctor-tablet.jpg',
+    connectedCare: './assets/amcare-connected-care.jpg',
+    patientTablet: './assets/amcare-patient-tablet.png'
+  };
+
   const $ = (s) => document.querySelector(s);
   const t = (k) => window.AmCareI18n.t(k);
 
@@ -416,6 +424,12 @@ window.AmCareApp = (() => {
     </article>
   `;
 
+  const mediaImg = (src, alt, cls = '') => `
+    <figure class="media-frame ${cls}">
+      <img src="${src}" alt="${alt}" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')" />
+    </figure>
+  `;
+
   const pageHome = () => `
     <section class="hero hero-grid">
       <article class="hero-copy">
@@ -434,6 +448,7 @@ window.AmCareApp = (() => {
         </div>
       </article>
       <article class="hero-media">
+        ${mediaImg(MEDIA.heroTech, 'Tecnología de salud digital', 'hero-image')}
         <h3 style="margin-top:0">One platform for care delivery</h3>
         <p>Plataforma digital de salud con acceso continuo, cobertura amplia y operación clínica escalable.</p>
         <div class="metric-strip">
@@ -447,6 +462,7 @@ window.AmCareApp = (() => {
 
     <section class="trust-logos card" style="margin-top:14px">
       <small>Casos de referencia en salud digital</small>
+      ${mediaImg(MEDIA.connectedCare, 'Red de atención conectada', 'trust-image')}
       <div class="trust-logos-row">
         <span>Cleveland Clinic</span>
         <span>Banner Health</span>
@@ -458,6 +474,7 @@ window.AmCareApp = (() => {
 
     <section class="card" style="margin-top:14px">
       <h2>Especialidades médicas</h2>
+      ${mediaImg(MEDIA.doctorTablet, 'Especialista usando tablet médica', 'specialty-image')}
       <div class="grid cols-4">
         <div class="card"><strong>Medicina General</strong><p>Atención primaria integral</p></div>
         <div class="card"><strong>Telepsiquiatría</strong><p>Salud mental y seguimiento</p></div>
@@ -488,6 +505,7 @@ window.AmCareApp = (() => {
   const pageLogin = () => `
     <section class="login-wrap">
       <article class="login-brand-panel">
+        ${mediaImg(MEDIA.videoConsult, 'Videoconsulta médica', 'login-image')}
         <p class="tag">AmCare Access</p>
         <h2>Ingresa a tu entorno clínico</h2>
         <p>Plataforma unificada para paciente, médico y administrador. Acceso seguro con enfoque en experiencia de telemedicina moderna.</p>
@@ -499,6 +517,9 @@ window.AmCareApp = (() => {
       </article>
 
       <article class="login-form-panel card">
+        <div class="login-circle-wrap">
+          ${mediaImg(MEDIA.patientTablet, 'Paciente usando tablet', 'login-circle-image')}
+        </div>
         <h2>${t('login')}</h2>
         <form id="loginForm">
           <div class="form-group"><label>Email</label><input type="email" id="loginEmail" required placeholder="usuario@amcare.co" /></div>

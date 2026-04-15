@@ -196,51 +196,55 @@ img { max-width: 100%; }
   padding: 16px;
 }
 
-.metric-strip {
-  margin: 14px 0;
+.media-frame {
+  margin: 0 0 12px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: #e8f5ee;
+}
+
+.media-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.media-frame.image-fallback {
+  min-height: 160px;
+  background: linear-gradient(135deg, rgba(20, 83, 45, 0.14), rgba(34, 197, 94, 0.24));
+  position: relative;
+}
+
+.media-frame.image-fallback::after {
+  content: 'Imagen de interfaz';
+  position: absolute;
+  inset: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
+  place-items: center;
+  color: #14532d;
+  font-weight: 600;
 }
 
-.metric-strip > div {
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 10px;
-  padding: 10px;
-}
-
-.metric-strip small {
-  display: block;
-  opacity: .85;
-  font-size: .72rem;
-}
-
-.metric-strip strong {
-  display: block;
-  margin-top: 5px;
-  font-size: 1.1rem;
+.hero-image {
+  aspect-ratio: 16 / 9;
 }
 
 .trust-logos {
   background: linear-gradient(180deg, #fff, #f3fbf5);
 }
 
-.trust-logos-row {
+.trust-image {
   margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  aspect-ratio: 16 / 7;
+  border-color: var(--border);
 }
 
-.trust-logos-row span {
-  border: 1px solid var(--border);
-  background: #fff;
-  border-radius: 999px;
-  padding: 7px 12px;
-  font-size: .82rem;
-  font-weight: 600;
-  color: #3a4d65;
+.specialty-image {
+  margin-bottom: 14px;
+  aspect-ratio: 16 / 6;
+  border-color: var(--border);
 }
 
 .btn {
@@ -455,6 +459,19 @@ th { background: #eef9f1; }
   gap: 6px;
 }
 
+.login-circle-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.login-circle-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  border-color: #b6dfc5;
+}
+
 @media (min-width: 768px) {
   .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -463,6 +480,10 @@ th { background: #eef9f1; }
   .hero-grid { grid-template-columns: 1.2fr 1fr; }
   .login-wrap { grid-template-columns: 1fr 1fr; }
   .quick-role-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .login-circle-image {
+    width: 220px;
+    height: 220px;
+  }
 }
 
 @media (min-width: 1024px) {
