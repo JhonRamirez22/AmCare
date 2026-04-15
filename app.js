@@ -796,7 +796,7 @@ window.AmCareApp = (() => {
     </section>
   `;
 
-  const pagePlanes = () => `
+  const pagePlanes = (user) => `
     <section class="card">
       <h2>Planes y licenciamiento</h2>
       <div class="grid cols-4">
@@ -821,7 +821,7 @@ window.AmCareApp = (() => {
           </tbody>
         </table>
       </div>
-      <canvas id="plansChart" height="120"></canvas>
+      ${user?.rol === 'paciente' ? '' : '<canvas id="plansChart" height="120"></canvas>'}
       <p style="margin-top:10px"><span class="tag">🇺🇸 EE.UU</span><span class="tag">🇮🇱 Israel</span><span class="tag">🇨🇴 Colombia</span></p>
     </section>
   `;
@@ -1420,7 +1420,7 @@ window.AmCareApp = (() => {
     }
 
     const plansCtx = document.getElementById('plansChart');
-    if (plansCtx && window.Chart) {
+    if (user?.rol !== 'paciente' && plansCtx && window.Chart) {
       new Chart(plansCtx, {
         type: 'radar',
         data: {
@@ -1503,7 +1503,7 @@ window.AmCareApp = (() => {
     else if (route === '/consulta') page = pageConsulta(rawUser);
     else if (route === '/chat') page = pageChat(rawUser);
     else if (route === '/urgencias') page = pageUrgencias();
-    else if (route === '/planes') page = pagePlanes();
+    else if (route === '/planes') page = pagePlanes(rawUser);
     else if (route === '/casos-de-uso') page = pageCasosUso();
     else if (route === '/seguridad') page = pageSeguridad();
     else if (route === '/ayuda') page = pageAyuda();
